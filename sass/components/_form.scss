@@ -1,0 +1,111 @@
+.form{
+    // selecciona todos menos el último //
+    &__group:not(:last-child){
+        margin-bottom: 2rem;
+    }
+
+
+    &__input{
+        font-size: 1.5rem;
+        // inherit: hereda la fuente de la letra para que quede igual en toda la página//
+        font-family: inherit;
+        color: inherit;
+        padding: 1.5rem 2rem;
+        border-radius: 2px;
+        // color de fondo, opacidad //
+        background-color: rgba($color-white, .5);
+        border: none;
+        border-bottom: 3px solid transparent;
+        width: 90%;
+        display: block;
+        transition: all.3s;
+
+// quitar el contorno del cuadro de entrada //
+        &:focus{
+            //contorno//
+            outline: none;
+            box-shadow: 0 1rem 2rem rgba($color-black, .1);
+            border-bottom: 3px solid $color-primary-dark;
+    
+        }
+// enfoque invalido: se pone para que el navegador reconozca que si es una entrada de correo "que tenga el @" y si está bien se pone de color azul y si no de color rojo //
+        &:focus:invalid{
+            border-bottom: 3px solid $color-secondary-dark-2;
+        }
+
+// funciona para que el texto del placeholder sea un color y cuando uno escribe se vea mas oscuro //
+        &::-webkit-input-placeholder{
+            color: $color-grey-dark-2;
+        }
+
+
+    }
+// texto que se muestra en la parte de abajo cuando se esta llenando el formulario //
+    &__label{
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-left: 2rem;
+        margin-top: .7rem;
+        display: block;
+        transition: all .3s;
+    }
+// hace que el texto de la parte de abajo se oculte y cuando se escribe aparezca //
+    &__input:placeholder-shown + &__label{
+        opacity: 0;
+        // visibilidad: oculta //
+        visibility: hidden;
+        // efecto del texto hacia abajo //
+        transform: translateY(-4rem);
+
+    }
+// se le pone 49 para que queden enseguida uno del otro //
+    &__radio-group {
+        width: 49%;
+        display: inline-block;
+    }
+// ocultar los botones pequeñitos por defecto del html xd //
+    &__radio-input{
+        display: none;
+    }
+
+    &__radio-label{
+        font-size: $default-font-size;
+        cursor: pointer;
+        position: relative;
+        // para que el circulo azul se acomode //
+        padding-left: 4.5rem;
+    }
+// contorno de los botones de seleccionar //
+    &__radio-button{
+        height: 3rem;
+        width: 3rem;
+        border: 5px solid $color-primary-dark;
+        border-radius: 50%;
+        display: inline-block;
+        // se pone absoluto para colocar el circulo azul grande en el pequeño de selección y para que funcione se debe hacer que el padre sea pariente, por lo que en &__radio-label se le pone position:relative //
+        position: absolute;
+        left: 0;
+        top: -.4rem;
+
+// pseudo elemento - contorno azul de los botones //
+    &::after{
+            // se especifica el contenedor vacio //
+        content: "";
+        display: block;
+        height: 1.3rem;
+        width: 1.3rem;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $color-primary-dark;
+        opacity: 0;
+        transition: opacity .2s;
+        }
+    }
+// cuando se toca el elemento de etiqueta, la entrada de radio se verifica, por lo que se tiene la etiqueta checked marcada para nosotros y lo que se hace es seleccionar el hermano de ese y luego el chield porque es el que se quiere cambiar cada vez  que se seleccione la entrada de radio y por eso se le da una pacidad de 1 //
+    &__radio-input:checked ~ &__radio-label &__radio-button::after {
+    opacity: 1;
+}
+}                                                                                                                       

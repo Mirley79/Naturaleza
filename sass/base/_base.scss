@@ -1,0 +1,56 @@
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+// tamaño de fuente de toda la página //
+html{
+    font-size: 62.5%;
+    // 1rem = 10px y 10px / 16px = 62.5% //
+
+    // responsive // 
+// orden para realizar el responsive: base - tipografia - layout general - cuadricula (grid) - components //   
+
+
+
+    // la resolución de tablet-portatil y telefono son iguales, entonces se elimina la del teléfono //
+        /*
+        @include respond(telefono){
+            font-size: 50%;
+        }
+        */
+
+        @include respond(tablet-grande){
+            font-size: 56.25%;  // 1rem = 9px 9/16 =56.25% //
+        }
+
+        @include respond(tablet-portatil){
+            font-size: 50%; // decimos que 1rem = 8px entonces 8/16 = 50% //
+        }
+        /*
+        @include respond(telefono){
+            font-size: 30%; //1rem = 4.8px //
+        }
+        */
+
+        @include respond(pantalla-tv){
+            font-size: 75%; // 1rem = 12px 12/16 =0.75% //
+        }
+    }
+
+
+/* el valor del rem va de acuerdo a la raíz, en este caso la raíz del html es 10 px, por lo que cualquier valor que se desee cambiar, se va a dividir entre 10... si el valor fuera 20 px pues se divide entre 20 y así sucesivamente*/
+
+/* luego el 10px del html se divide por 16 que es el tamaño de la fuente y eso da 62.5% que es igual a 10px*/
+
+body{
+    box-sizing: border-box;
+    padding: 3rem;
+// responsive body //
+    @include respond(tablet-portatil){
+        padding: 0; 
+    }
+}

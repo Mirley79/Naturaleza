@@ -1,0 +1,19 @@
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    opacity: .15;
+// overflow: "desbordamiento oculto" evita que el video se salga de la sesion gris //    
+    overflow: hidden;
+    
+// controlar el desbordamiento del video - para que no se salga de la sesion gris //
+    &__content {
+        height: 100%;
+        width: 100%;
+// ajuste de objeto: permite como a las imagenes rellenar y mantener el aspecto //
+        object-fit: cover;
+    }
+}

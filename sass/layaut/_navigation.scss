@@ -1,0 +1,167 @@
+.navigation{
+
+    &__checkbox{
+        display: none;
+
+    }
+// boton menu //
+    &__button{
+        background-color: $color-white;
+        // el boton es 1rem más alto y ancho que el fondo (background), por eso está medio más lejos hacia arriba y hacia la derecha - uno encima de otro// 
+        height: 7rem;
+        width: 7rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        border-radius: 50%;
+        z-index: 2000;
+        box-shadow: 0 1rem 3rem rgba($color-black, .2);
+        text-align: center;
+        cursor: pointer;
+
+    }
+// menú//
+    &__background{
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        // boton: para que se quede ahí siempre, no cambia de posición cuando se hace scroll //
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        // fondo cuando se apreta el botón menú - radial-gradient va de un lado al otro //
+        background-image: radial-gradient($color-primary-dark, 
+        $color-tertiary-light) ;
+        // para que pase por encima de los demás cuadros //
+        z-index: 1000;
+        // animacion del boton al menú //
+        transition: transform 1s cubic-bezier(0.86, 0, 0.07, 1);
+
+        //para que se abra la lista //
+        //transform: scale(80); //
+
+
+    }
+// ventana de navegación, debe tener 100 vh, ya que cuando se abre ocupa toda la pantalla //
+    &__nav{
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        // este por encima del fondo del menú y debajo del circulo del menú//
+        z-index: 1500;
+        // ocultar la lista grande de la pantalla principal //
+        opacity: 0;
+        width: 0;
+        transition: all .8s;
+
+    }
+// lista grande //
+    &__list{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        list-style: none;
+        text-align: center;
+        width: 100%;
+
+ 
+    }
+// elementos //
+    &__item{
+        padding: 1.5rem;
+
+    }
+// propiedades palabras de la lista - menú grande//
+    &__link{
+        &:link,
+        &:visited{
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 500;
+            color: $color-white;
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-image: linear-gradient(120deg,  transparent 0%, transparent 50%, $color-white 50%);
+            // 220% para que rellene todo de un solo color//
+            background-size: 220%;
+            transition: all .4s;
+        }
+// cuando se pase el mouse por encima cambie de color y haga efecto //
+        &:hover,
+        &:active{
+            // 100% para desplaze ese color//
+            background-position: 100%;
+            color: $color-primary-dark;
+            transform: translateX(1.5rem);
+
+        }
+    }
+// para cuando se toque el botón menú aparezca la lista-grande //
+    &__checkbox:checked ~ &__background{
+        transform: scale(80);
+    }
+
+    &__checkbox:checked ~ &__nav{
+        opacity: 1;
+        width: 100%;
+        
+    }
+// barritas del boton menú //
+    &__icon{
+        position: relative;
+        margin-top:3.5rem ;
+        //elemento icono//
+        &,
+        //pseudo elemento antes//
+        &::before,
+        //pseudo elemento después//
+        &::after{
+            width: 3rem;
+            height: 2px;
+            background-color: $color-grey-dark-3;
+            display: inline-block;
+        }
+
+        // para que los elementos antes y después aparezcan en la página, deben tener definida su propiedad de contenido: content- en este caso vacia //
+
+        &::before,
+        &::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+// acomodar las tres líneas del boton menú //
+        &::before{
+            top: -1rem;
+        }
+        &::after{
+            top: 1rem; 
+        }
+    }
+    // al pasar el mouse por encima del botón menú haga un leve movimiento hacia arriba //
+    &__button:hover &__icon::before{
+        top: -1.2rem;
+    }  
+    &__button:hover &__icon::after{
+        top: 1.2rem;
+    }  
+// cunado se selecciona la casilla de verificación (checked) seleccionamos su hermano que se llama button y luego se selecciona el elemnto secundario que se llama icon, esto para cuando se presione el boton menú, la barrita de la mitad desaparezca y las barritas de arriba y abajo hagan transformación y se pongan en cruz (x) //
+    &__checkbox:checked + &__button &__icon{
+        background-color: transparent;
+    }
+    &__checkbox:checked + &__button &__icon::before{
+        transform: rotate(135deg);
+        top: 0;
+    }
+    &__checkbox:checked + &__button &__icon::after{
+        top: 0;
+        transform: rotate(-135deg);
+    }
+
+    // existe una propiedad que se llama tranform:origen, que lo que hace es rotar dependiendo de donde se le indique. ejemplo: tranform-origin: right. empieza a rotar desde la derecha y mantiene su punto inicial //
+   
+}

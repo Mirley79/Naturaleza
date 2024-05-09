@@ -1,0 +1,65 @@
+.section-about{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0;
+    margin-top: -20vh;
+    
+}
+
+.section-features{
+    padding: 20rem 0;
+    background-image: linear-gradient(to right bottom,
+    $color-primary-light,
+    $color-primary-dark) , 
+    url(../img/nat-4.jpg);
+    background-size: cover;
+    transform: skewY(-7deg);
+    margin-top: -10rem;
+
+    & > *{
+        transform: skewY(7deg);
+    }
+}
+
+.section-tours{
+    background-color: $color-grey-light-1;
+    padding: 25rem 0 15rem 0;
+    margin-top: -10rem;
+    
+
+}
+
+.section-stories{
+    position: relative;
+     // 15 rem arriba - abajo y 0 izquierda-derecha//
+    padding: 15rem 0;
+    
+}
+// sesion "contenedor" fondo formulario //
+
+.section-book {
+    padding: 15rem 0;
+    background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+}
+
+.book {
+// (105deg, rgba($color-white, .9) 0%,orange 50%:se espeficica que va de un solo color hasta la mitad osea 50% y luego desde la mitad que empieze el gradiente que es lo que indica el 0) //
+    background-image: linear-gradient(105deg, 
+                                     rgba($color-white, .9) 0%,
+                                     rgba($color-white, .9) 50%,
+                                     transparent 50%),
+                                      url(../img/nat-10.jpg);
+    background-size: 100%;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .2);
+
+    height: 50rem;
+
+    &__form{
+        width: 50%;
+        padding: 6rem;
+    }
+
+}
+   
+   
+

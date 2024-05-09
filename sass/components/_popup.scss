@@ -1,0 +1,135 @@
+// targeta flotante - parte de atrás //
+
+.popup {
+    height: 100vh;
+    width: 100%;
+    // para mantener el posicionamiento fijo de la caja blanca //
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    // para que aparezca encima de todo //
+    z-index: 9999;
+   opacity: 0;
+   //visivilidad de la ventana emergente: oculta //
+   visibility: hidden;
+   transition: all .3s;
+
+
+// caja blanca //
+    &__content {
+        //  @include absCenter: propiedad que se define en el archivo mixins //
+        @include absCenter;
+       
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table;
+        // evitar el desbordamiento de las imágenes //
+        overflow: hidden;
+        // animación cuando aparece la ventana emergente//
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.25);
+        // tiempo de transición y retraso de transición //
+        transition: all .6s .2s;
+        
+    }
+// parte izquierda donde están las imágenes //
+    &__left {
+        width: 33.3%;
+        // propiedad display: table-cell hace que cualquier elemento se muestre como si fuera una celda de una tabla //
+        display: table-cell;
+        
+        
+        
+    }
+// parte izquierda donde está el texto y el botón //
+    &__right {
+        width: 66.6%;
+        display: table-cell;
+        // propiedad vertical-align puede usarse para alterar la ubicación vertical de un elemento en línea, en relación a su elemento padre o a la línea del elemento, en este caso para que quede en la mitad de la caja blanca // 
+        vertical-align: middle;
+        padding: 3rem 5rem;
+
+
+        
+        
+    }
+// propiedad imagenes //
+    &__img {
+        display: block;
+        width: 100%;
+        margin: 7px;
+        border-radius: 3px;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+    }
+// propiedad texto //
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        text-align: justify;
+
+        // hacer que el texto aparezca en dos columnas //
+        column-count: 2;
+        // espacio entre columnas //
+        column-gap: 4rem; // Importante: 1 em = 14px, porque es siempre el tamaño de fuente del elemento actual, en este caso  font-size: 1.4rem, por lo es igual a 1 //
+        // column-rule es una propiedad que estará exactamente en medio de las dos columnas //
+        column-rule: 1px solid $color-grey-light-2;
+        // propiedad que sirve para colocar los guiones cuando las palabras se cortan y sigues abajo y para que funcione correctamente se debe especificar el idioma del index al principio del html //
+        // prefijos para diferentes navegadores //
+        -moz-hyphens: auto;
+        -ms-hyphens: auto;
+        -webkit-hyphens: auto;
+        hyphens: auto;
+        
+        
+    }
+
+   
+// pseudo clase que sirve para que cuando te toque el botón comprar ahora aparezca la ventana emergente //
+    &:target{
+       opacity: 1;
+       visibility: visible;
+    }
+
+// ventana emergente abierta //
+    &:target &__content{
+        // animación cuando aparece la ventana emergente//
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+
+
+    }
+
+// para que la ventana emergente se cierre //
+    &__close{
+    // estado del enlace y estado visitado //
+    &:link,
+    &:visited{
+        color: $color-grey-dark;
+        position: absolute;
+        top: 2.5rem;
+        right: 2.5rem;
+        font-size: 3rem;
+        font-weight: 900;
+        text-decoration: none;
+        display: inline-block;
+        transition: all .3s;
+        // altura de linea: para cuadrar la x de cerrar //
+        line-height: 1;
+    }
+// cuando se pase por encima de la x se ponga color azul //
+    &:hover{
+        color: $color-primary-dark;
+
+    }
+
+
+}
+
+   
+
+}
+
+

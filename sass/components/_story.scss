@@ -1,0 +1,73 @@
+// sesion historias //
+// cuadro blanco //
+.story{
+    width: 75%;
+    margin: 0 auto;
+//sombra 0, 3rem en direccion Y, 6rem de desenfoque, color//
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+// definir la opacidad de los cuadros de las historias //
+    background-color: rgba($color-white, .6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+// Forma rectangular sesgada de la historia //
+    transform:skewX(-12deg);
+
+// circulo de la imagen //
+    &__shape{
+        width: 15rem;
+        height: 15rem;
+        float: left;
+// shape-outside: define donde flota el contenido y al 50% hace que el texto quede contorneando el circulo //
+        -web-kit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+//clip-path: para darle la forma de circulo//
+        -web-kit-clip-path:circle(50% at 50% 50%);
+        clip-path:circle(50% at 50% 50%);
+// para separar el circulo del texto y para evitar que la imagen quede con sesgo //
+        transform: translateX(-3rem) skewX(12deg);
+        position: relative;
+    }
+// propiedades de la imagen de circulo //
+    &__img{
+        height: 100%;  
+        transform: translateX(1rem) scale(1.4);
+        backface-visibility: hidden;
+        transition: all .5s;
+
+    }
+// para que el texto no tenga sesgo //
+    &__text{
+        transform:skewX(12deg);
+    }
+// poner el subtitulo en la imagen //
+    &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $color-white;
+    text-transform: uppercase;
+    font-size: 1.7rem;
+    text-align: center;
+    opacity: 0;
+    transition: all .5s;
+    backface-visibility: hidden;
+    }
+
+    &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    }
+// para cuando se toque la imagen se ponga borrosa y haga zoom //
+    &:hover &__img {
+    transform: translate(-4rem) scale(1);
+    filter: blur(3px) brightness(80%);
+    }
+
+    
+
+}
+
+
